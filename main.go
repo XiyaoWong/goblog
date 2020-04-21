@@ -14,5 +14,5 @@ func main() {
 
 	router := server.NewRouter()
 
-	panic(router.Run(":" + strconv.Itoa(config.SERVER_PORT)))
+	panic(router.Run(":" + strconv.Itoa(config.ServerPort)))
 }

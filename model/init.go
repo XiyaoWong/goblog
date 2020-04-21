@@ -11,10 +11,12 @@ import (
 	"goblog/config"
 )
 
+// DB ...
 var DB *gorm.DB
 
+// InitDB ...
 func InitDB() {
-	db, err := gorm.Open("sqlite3", config.DB_NAME)
+	db, err := gorm.Open("sqlite3", config.DBName)
 	db.LogMode(true)
 	if err != nil {
 		panic("数据库连接错误")

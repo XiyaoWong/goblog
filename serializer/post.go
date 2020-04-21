@@ -6,6 +6,7 @@ import (
 	"math"
 )
 
+// Post ...
 type Post struct {
 	ID       uint   `json:"id"`
 	Title    string `json:"title"`

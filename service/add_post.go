@@ -6,11 +6,13 @@ import (
 	"goblog/serializer"
 )
 
+// AddPostService .
 type AddPostService struct {
 	Title string `form:"title" json:"title" binding:"required,min=2,max=50"`
 	Body  string `form:"body" json:"body"`
 }
 
+// Add .
 func (service *AddPostService) Add() (model.Post, *serializer.Response) {
 	post := model.Post{
 		Title: service.Title,

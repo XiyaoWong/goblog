@@ -2,22 +2,24 @@
 package common
 
 import (
-	"github.com/dgrijalva/jwt-go"
 	"goblog/config"
 	"goblog/model"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
+// Claims ...
 type Claims struct {
-	UserId uint
+	UserID uint
 	jwt.StandardClaims
 }
 
-// 生成用户认证token
+// ReleaseToken 生成用户认证token
 func ReleaseToken(user model.User) (string, error) {
-	expirationTime := time.Now().Add(config.EXPRIATION)
+	expirationTime := time.Now().Add(config.Expriation)
 	claims := &Claims{
-		UserId: user.ID,
+		UserID: user.ID,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 			IssuedAt:  time.Now().Unix(),
@@ -27,7 +29,7 @@ func ReleaseToken(user model.User) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString([]byte(config.JWT_KEY))
+	tokenString, err := token.SignedString([]byte(config.JWTKey))
 
 	if err != nil {
 		return "", err
@@ -36,12 +38,12 @@ func ReleaseToken(user model.User) (string, error) {
 	return tokenString, nil
 }
 
-// 校验token
+// ParseToken 校验token
 func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
 	claims := &Claims{}
 
 	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (i interface{}, err error) {
-		return []byte(config.JWT_KEY), nil
+		return []byte(config.JWTKey), nil
 	})
 
 	return token, claims, err

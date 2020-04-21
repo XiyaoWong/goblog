@@ -6,8 +6,10 @@ import (
 	"goblog/serializer"
 )
 
+// DeletePostService .
 type DeletePostService struct{}
 
+// Delete .
 func (service *DeletePostService) Delete(id string) serializer.Response {
 	var post model.Post
 	err := model.DB.First(&post, id).Error

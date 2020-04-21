@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 添加用户
+// AddUser 添加用户
 func AddUser(c *gin.Context) {
 	var service service.AddUserService
 	if err := c.ShouldBind(&service); err == nil {
@@ -23,12 +23,14 @@ func AddUser(c *gin.Context) {
 	}
 }
 
+// ShowUserInfo 用户信息
 func ShowUserInfo(c *gin.Context) {
 	var service service.ShowUserInfoService
 	rep := service.Show(c.Param("user_id"))
 	c.JSON(200, rep)
 }
 
+//UserLogin 登陆
 func UserLogin(c *gin.Context) {
 	var service service.UserLoginService
 	err := c.ShouldBind(&service)

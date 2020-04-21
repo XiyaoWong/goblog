@@ -10,8 +10,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// NewRouter ...
 func NewRouter() *gin.Engine {
-	gin.SetMode(config.SERVER_MODE)
+	gin.SetMode(config.ServerMode)
 	r := gin.Default()
 
 	// 跨域
@@ -19,7 +20,7 @@ func NewRouter() *gin.Engine {
 
 	r.GET("/ping", func(c *gin.Context) { c.JSON(200, serializer.Response{Msg: "Pong!"}) })
 
-	if config.ALLOW_REGISTER {
+	if config.AllowRegister {
 		r.POST("/users", controller.AddUser)
 	}
 

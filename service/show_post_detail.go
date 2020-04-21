@@ -6,8 +6,10 @@ import (
 	"goblog/serializer"
 )
 
+// ShowPostDetailService .
 type ShowPostDetailService struct{}
 
+// Show .
 func (service *ShowPostDetailService) Show(id string) serializer.Response {
 	var post model.Post
 	err := model.DB.First(&post, id).Error

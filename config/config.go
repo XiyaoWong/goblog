@@ -8,15 +8,23 @@ import (
 )
 
 var (
-	SERVER_PORT    = 8888
-	SERVER_MODE    = "release"
-	DB_NAME        = "GOBLOG.sqlite3"
-	JWT_KEY        = "this is awesome!!!"
-	EXPRIATION     = 3 * 24 * time.Hour
-	ALLOW_REGISTER = false
-	ALLOW_ORIGIN   []string
+	// ServerPort 端口
+	ServerPort = 8888
+	// ServerMode 模式
+	ServerMode = "release"
+	// DBName 保存数据库名称
+	DBName = "GOBLOG.sqlite3"
+	// JWTKey jwt密匙
+	JWTKey = "this is awesome!!!"
+	// Expriation token有效时间
+	Expriation = 3 * 24 * time.Hour
+	//AllowRegister 是否开始注册功能
+	AllowRegister = false
+	// AllowOrigin 允许跨域请求列表
+	AllowOrigin []string
 )
 
+// Init 初始化配置
 func Init() {
 	cfg, err := ini.ShadowLoad("config.ini")
 	if err != nil {
@@ -24,14 +32,14 @@ func Init() {
 	}
 	fmt.Printf("读取配置文件成功\n")
 	sec, _ := cfg.GetSection(ini.DEFAULT_SECTION)
-	SERVER_PORT = sec.Key("server_port").MustInt(8888)
-	SERVER_MODE = sec.Key("server_mode").MustString("release")
-	DB_NAME = sec.Key("db_name").MustString("GOBLOG.sqlite3")
-	JWT_KEY = sec.Key("jwt_key").MustString("this is awesome!!!")
+	ServerPort = sec.Key("server_port").MustInt(8888)
+	ServerMode = sec.Key("server_mode").MustString("release")
+	DBName = sec.Key("db_name").MustString("GOBLOG.sqlite3")
+	JWTKey = sec.Key("jwt_key").MustString("this is awesome!!!")
 
 	hour := sec.Key("expriation").MustInt(3 * 24)
-	EXPRIATION = time.Duration(hour) * time.Hour
+	Expriation = time.Duration(hour) * time.Hour
 
-	ALLOW_REGISTER = sec.Key("allow_register").MustBool(false)
-	ALLOW_ORIGIN = sec.Key("origin").ValueWithShadows()
+	AllowRegister = sec.Key("allow_register").MustBool(false)
+	AllowOrigin = sec.Key("origin").ValueWithShadows()
 }

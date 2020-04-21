@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 新增帖子
+// AddPost 新增帖子
 func AddPost(c *gin.Context) {
 	var service service.AddPostService
 	if err := c.ShouldBind(&service); err == nil {
@@ -23,7 +23,7 @@ func AddPost(c *gin.Context) {
 	}
 }
 
-// 删除帖子
+// DeletePost 删除帖子
 func DeletePost(c *gin.Context) {
 	var service service.DeletePostService
 	rep := service.Delete(c.Param("post_id"))
@@ -31,21 +31,21 @@ func DeletePost(c *gin.Context) {
 
 }
 
-// 显示帖子列表
+// ShowPostList 显示帖子列表
 func ShowPostList(c *gin.Context) {
 	var service service.ShowPostListService
 	rep := service.Show()
 	c.JSON(200, rep)
 }
 
-// 显示帖子详情
+// ShowPostDetail 显示帖子详情
 func ShowPostDetail(c *gin.Context) {
 	var service service.ShowPostDetailService
 	rep := service.Show(c.Param("post_id"))
 	c.JSON(200, rep)
 }
 
-// 更新帖子
+// UpdatePost 更新帖子
 func UpdatePost(c *gin.Context) {
 	var service service.UpdatePostService
 	if err := c.ShouldBind(&service); err == nil {

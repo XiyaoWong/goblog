@@ -15,7 +15,7 @@ type AddUserService struct {
 	Avatar          string `form:"avatar" json:"avatar" binding:"required"`
 }
 
-// 验证数据
+// Valid 验证数据
 func (service *AddUserService) Valid() *serializer.Response {
 	if service.PasswordConfirm != service.Password {
 		return &serializer.Response{
@@ -35,7 +35,7 @@ func (service *AddUserService) Valid() *serializer.Response {
 	return nil
 }
 
-// Register 用户注册
+// Add 用户注册
 func (service *AddUserService) Add() (model.User, *serializer.Response) {
 	user := model.User{
 		Nickname: service.Nickname,

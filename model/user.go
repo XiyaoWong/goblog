@@ -6,6 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// User ...
 type User struct {
 	gorm.Model
 	Username string

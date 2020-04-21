@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// AuthMiddleware ...
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 获取authorization header
@@ -34,9 +35,9 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		// 验证通过后获取claim 中的userId
-		userId := claims.UserId
+		userID := claims.UserId
 		var user model.User
-		model.DB.First(&user, userId)
+		model.DB.First(&user, userID)
 
 		// 用户
 		if user.ID == 0 {

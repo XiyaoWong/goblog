@@ -5,6 +5,7 @@ import (
 	"goblog/model"
 )
 
+// User ...
 type User struct {
 	ID       uint   `json:"id"`
 	Username string `json:"username"`
@@ -12,6 +13,7 @@ type User struct {
 	Avatar   string `json:"avatar"`
 }
 
+// BuildUserInfoResponse ..
 func BuildUserInfoResponse(user model.User) Response {
 	return Response{
 		Data: User{

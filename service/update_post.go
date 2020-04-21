@@ -6,11 +6,13 @@ import (
 	"goblog/serializer"
 )
 
+// UpdatePostService ..
 type UpdatePostService struct {
 	Title string `form:"title" json:"title" binding:"required,min=2,max=50"`
 	Body  string `form:"body" json:"body"`
 }
 
+// Update ...
 func (service *UpdatePostService) Update(id string) (model.Post, *serializer.Response) {
 	var post model.Post
 	// 检查是否存在该帖子
