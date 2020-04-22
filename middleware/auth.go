@@ -35,7 +35,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		// 验证通过后获取claim 中的userId
-		userID := claims.UserId
+		userID := claims.UserID
 		var user model.User
 		model.DB.First(&user, userID)
 

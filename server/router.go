@@ -31,6 +31,8 @@ func NewRouter() *gin.Engine {
 	r.GET("/posts", controller.ShowPostList)
 	r.GET("/posts/:post_id", controller.ShowPostDetail)
 
+	r.POST("/checkToken", controller.CheckToken)
+
 	// 需要鉴权的
 	auth := r.Group("/")
 	auth.Use(middleware.AuthMiddleware())
