@@ -10,10 +10,10 @@ My personal blog backend(api) powerd by golang.
 
 ```json
 {
-    code:
-    msg:
-    error:
-    data:
+  "code": 0,
+  "msg": "",
+  "error": "",
+  "data": null
 }
 ```
 
@@ -33,6 +33,7 @@ My personal blog backend(api) powerd by golang.
 
 | code | meaning    |
 | ---- | ---------- |
+| 0    | 成功       |
 | 401  | 权限不足   |
 | 404  | 内容不存在 |
 | 500  | 服务器错误 |
