@@ -13,6 +13,7 @@ type Post struct {
 	Body     string `json:"body"`
 	CreateAt int64  `json:"create_at"`
 	UpdateAT int64  `json:"update_at"`
+	IsShow   int    `json:"is_show"`
 }
 
 // BuildPostDetailResponse 帖子详情
@@ -24,6 +25,7 @@ func BuildPostDetailResponse(post model.Post) Response {
 			Body:     post.Body,
 			CreateAt: post.CreatedAt.Unix(),
 			UpdateAT: post.UpdatedAt.Unix(),
+			IsShow:   post.IsShow,
 		},
 	}
 }
@@ -38,6 +40,7 @@ func BuildPostOutline(post model.Post) interface{} {
 		Body:     post.Body[:int(pos)],
 		CreateAt: post.CreatedAt.Unix(),
 		UpdateAT: post.UpdatedAt.Unix(),
+		IsShow:   post.IsShow,
 	}
 }
 

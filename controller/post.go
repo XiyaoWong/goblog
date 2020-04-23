@@ -2,9 +2,12 @@
 package controller
 
 import (
+	"fmt"
 	"goblog/service"
 
 	"goblog/serializer"
+
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,6 +16,7 @@ import (
 func AddPost(c *gin.Context) {
 	var service service.AddPostService
 	if err := c.ShouldBind(&service); err == nil {
+		fmt.Printf("AddPostService: %v\n", service)
 		if post, err := service.Add(); err != nil {
 			c.JSON(200, err)
 		} else {
@@ -33,8 +37,17 @@ func DeletePost(c *gin.Context) {
 
 // ShowPostList 显示帖子列表
 func ShowPostList(c *gin.Context) {
+	// 获得token
+	tokenString := c.GetHeader("Authorization")
+	if tokenString == "" || !strings.HasPrefix(tokenString, "Bearer ") {
+		tokenString = "Bearer "
+	}
+	tokenString = tokenString[7:]
+
 	var service service.ShowPostListService
-	rep := service.Show()
+
+	rep := service.Show(tokenString)
+
 	c.JSON(200, rep)
 }
 
