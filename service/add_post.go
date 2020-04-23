@@ -2,7 +2,6 @@
 package service
 
 import (
-	"fmt"
 	"goblog/model"
 	"goblog/serializer"
 )
@@ -16,11 +15,9 @@ type AddPostService struct {
 
 // Add 成功则返回该post模型实例，失败返回错误Response
 func (service *AddPostService) Add() (model.Post, *serializer.Response) {
-	fmt.Printf("type: %T, value: %v\n", service.IsShow, service.IsShow)
 	if service.IsShow != -1 {
 		service.IsShow = 1
 	}
-	fmt.Printf("type: %T, value: %v\n", service.IsShow, service.IsShow)
 	post := model.Post{
 		Title:  service.Title,
 		Body:   service.Body,
@@ -34,6 +31,5 @@ func (service *AddPostService) Add() (model.Post, *serializer.Response) {
 			Error: err.Error(),
 		}
 	}
-	fmt.Printf("new post: %v", post)
 	return post, nil
 }

@@ -2,7 +2,6 @@
 package controller
 
 import (
-	"fmt"
 	"goblog/service"
 
 	"goblog/serializer"
@@ -16,7 +15,6 @@ import (
 func AddPost(c *gin.Context) {
 	var service service.AddPostService
 	if err := c.ShouldBind(&service); err == nil {
-		fmt.Printf("AddPostService: %v\n", service)
 		if post, err := service.Add(); err != nil {
 			c.JSON(200, err)
 		} else {

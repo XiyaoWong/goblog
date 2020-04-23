@@ -2,7 +2,6 @@
 package middleware
 
 import (
-	"fmt"
 	"goblog/common"
 	"goblog/model"
 	"goblog/serializer"
@@ -29,7 +28,6 @@ func AuthMiddleware() gin.HandlerFunc {
 		token, claims, err := common.ParseToken(tokenString)
 		if err != nil || !token.Valid {
 			c.JSON(200, serializer.Response{Code: 401, Msg: "权限不足"})
-			fmt.Println(err)
 			c.Abort()
 			return
 		}
