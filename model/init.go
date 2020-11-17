@@ -21,9 +21,7 @@ func InitDB() {
 	if err != nil {
 		panic("数据库连接错误")
 	}
-	if gin.Mode() == "release" {
-		db.LogMode(false)
-	}
+	db.LogMode(gin.Mode() != gin.ReleaseMode)
 	//设置连接池
 	//空闲
 	db.DB().SetMaxIdleConns(20)

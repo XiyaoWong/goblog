@@ -10,9 +10,10 @@ import (
 
 func main() {
 	config.Init()
-	model.InitDB()
 
 	router := server.NewRouter()
+
+	model.InitDB()
 
 	panic(router.Run(":" + strconv.Itoa(config.ServerPort)))
 }
